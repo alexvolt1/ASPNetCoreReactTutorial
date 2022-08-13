@@ -9,10 +9,10 @@ namespace aspnetserver.Data
 
         [Required]
         [MaxLength(100)]
-        public string Title { get; set; } = string.Empty;
+        public string Title { get; set; } = String.Empty;
 
         [Required]
         [MaxLength(100000)]
-        public string Content { get; set; } = string.Empty;
+        public string Content { get; set; } = String.Empty;
     }
 }

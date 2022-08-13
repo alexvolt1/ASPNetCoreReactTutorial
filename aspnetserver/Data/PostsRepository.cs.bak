@@ -9,9 +9,9 @@ namespace aspnetserver.Data
             using (var db = new AppDBContext())
             {
                 return await db.Posts.ToListAsync();
+
             }
         }
-
         internal async static Task<Post> GetPostByIdAsync(int postId)
         {
             using (var db = new AppDBContext())
@@ -20,7 +20,6 @@ namespace aspnetserver.Data
                     .FirstOrDefaultAsync(post => post.PostId == postId);
             }
         }
-
         internal async static Task<bool> CreatePostAsync(Post postToCreate)
         {
             using (var db = new AppDBContext())
@@ -37,7 +36,6 @@ namespace aspnetserver.Data
                 }
             }
         }
-
         internal async static Task<bool> UpdatePostAsync(Post postToUpdate)
         {
             using (var db = new AppDBContext())
@@ -54,7 +52,6 @@ namespace aspnetserver.Data
                 }
             }
         }
-
         internal async static Task<bool> DeletePostAsync(int postId)
         {
             using (var db = new AppDBContext())

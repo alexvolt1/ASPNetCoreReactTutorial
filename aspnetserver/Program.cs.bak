@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("CORSPolicy", 
+    options.AddPolicy("CORSPolicy",
         builder =>
         {
             builder
@@ -15,31 +15,35 @@ builder.Services.AddCors(options =>
         });
 });
 
-// Add services to the container.
+// Add services to the container 22222.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(swaggerGenOptions =>
 {
     swaggerGenOptions.SwaggerDoc("v1", new OpenApiInfo { Title = "ASP.NET React Tutorial", Version = "v1" });
-});
+}
+    );
 
 var app = builder.Build();
 
+// Configure the HTTP request pipeline.
+
 app.UseSwagger();
-app.UseSwaggerUI(swaggerUIOptions =>
-{
-    swaggerUIOptions.DocumentTitle = "ASP.NET React Tutorial";
-    swaggerUIOptions.SwaggerEndpoint("/swagger/v1/swagger.json", "Web API serving a very simple Post model.");
-    swaggerUIOptions.RoutePrefix = string.Empty;
-});
+app.UseSwaggerUI(
+    swaggerUIOptions =>
+    {
+        swaggerUIOptions.DocumentTitle = "ASP.NET React Tutorial";
+        swaggerUIOptions.SwaggerEndpoint("/swagger/v1/swagger.json", "Web API serving a very simple Post model.");
+        swaggerUIOptions.RoutePrefix = string.Empty;
+    });
 
 app.UseHttpsRedirection();
 
 app.UseCors("CORSPolicy");
 
+
 app.MapGet("/get-all-posts", async () => await PostsRepository.GetPostsAsync())
     .WithTags("Posts Endpoints");
-
 app.MapGet("/get-post-by-id/{postId}", async (int postId) =>
 {
     Post postToReturn = await PostsRepository.GetPostByIdAsync(postId);
@@ -97,3 +101,4 @@ app.MapDelete("/delete-post-by-id/{postId}", async (int postId) =>
 }).WithTags("Posts Endpoints");
 
 app.Run();
+

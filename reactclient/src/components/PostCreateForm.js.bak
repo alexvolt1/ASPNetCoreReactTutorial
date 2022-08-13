@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
-import Constants from '../utilities/Constants'
+import React, { useState } from 'react';
+import Constants from '../utilities/Constants';
+import PostCreateForm from "./components/PostCreateForm";
 
 export default function PostCreateForm(props) {
     const initialFormData = Object.freeze({
